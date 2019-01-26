@@ -54,6 +54,42 @@ class KBTest(unittest.TestCase):
 		self.assertEqual(str(answer[4]), "?X : pyramid3, ?Y : red")
 		self.assertEqual(str(answer[5]), "?X : pyramid4, ?Y : red")
 		
+	def test6(self):
+		ask1 = read.parse_input("fact: (inst ?X cube)")
+		print(' Asking if', ask1)
+		answer = self.KB.kb_ask(ask1)
+		self.assertEqual(str(answer[0]), "?X : cube1")
+		self.assertEqual(str(answer[1]), "?X : cube2")
+		self.assertEqual(str(answer[2]), "?X : cube3")
+		self.assertEqual(str(answer[3]), "?X : cube4")
+		
+	def test7(self):
+		ask1 = read.parse_input("fact: (size ?X ?Y)")
+		print(' Asking if', ask1)
+		answer = self.KB.kb_ask(ask1)
+		self.assertEqual(str(answer[0]), "?X : bigbox, ?Y : big")
+		self.assertEqual(str(answer[1]), "?X : littlebox, ?Y : small")
+		self.assertEqual(str(answer[2]), "?X : pyramid1, ?Y : small")
+		self.assertEqual(str(answer[3]), "?X : pyramid2, ?Y : small")
+		self.assertEqual(str(answer[4]), "?X : pyramid3, ?Y : big")
+		self.assertEqual(str(answer[5]), "?X : pyramid4, ?Y : big")
+		
+	def test8(self):
+		ask1 = read.parse_input("fact: (isa cube ?Y)")
+		print(' Asking if', ask1)
+		answer = self.KB.kb_ask(ask1)
+		self.assertEqual(str(answer[0]), "?Y : block")
+		
+	def test9(self):
+		ask1 = read.parse_input("fact: (isa ?X block)")
+		print(' Asking if', ask1)
+		answer = self.KB.kb_ask(ask1)
+		self.assertEqual(str(answer[0]), "?X : cube")
+		self.assertEqual(str(answer[1]), "?X : pyramid")
+		self.assertEqual(str(answer[2]), "?X : sphere")
+		
+		
+		
 
 if __name__ == '__main__':
 	unittest.main()
